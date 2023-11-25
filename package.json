@@ -1,5 +1,5 @@
 {
-  "name": "CPaaS_API",
+  "name": "project",
   "version": "1.0.0",
   "scripts": {
     "docker:build-all": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml build",
