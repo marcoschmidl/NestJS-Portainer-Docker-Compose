@@ -1,0 +1,47 @@
+/*try {
+      const existingUser = await
+        this.userService.getUserbyPlate(plate);
+      return response.status(HttpStatus.OK).json({
+        message: 'User found successfully', existingUser,
+      });
+    } catch (err) {
+      return response.status(err.status).json(err.response);
+    }*/
+
+
+
+ @Get('number1/:number')
+  async getUserbyNumber(@Res() response, @Param('number') number: string) {
+    try {
+      const existingUser = await
+        this.userService.getUserbyNumber(number);
+      return response.status(HttpStatus.OK).json({
+        message: 'User found successfully', existingUser,
+      });
+    } catch (err) {
+      return response.status(err.status).json(err.response);
+    }
+    throw new HttpException({
+      status: HttpStatus.FORBIDDEN,
+      error: 'Access to this site is forbidden',
+    }, 403);
+
+  }
+
+
+  @Post()
+    async createStudent(@Res() response, @Body() createStudentDto: CreateUserDto) {
+      try {
+        const newUser = await this.userService.createUser(createStudentDto);
+        return response.status(HttpStatus.CREATED).json({
+          message: 'User has been created successfully',
+          newUser,
+        });
+      } catch (err) {
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          statusCode: 400,
+          message: 'Error: User not created :(!',
+          error: 'Bad Request',
+        });
+      }
+    }

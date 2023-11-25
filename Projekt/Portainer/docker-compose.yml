@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  portainer4stack:
+    container_name: portainer4stack
+    restart: always
+    image: 'portainer/portainer-ce:latest'
+    ports:
+      - '9000:9000'
+      - '9443:9443' #ssl
+      - '8000:8000'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    command:
+      - '--admin-password-file=/run/secrets/portainer_admin_password'
+      - '--no-analytics'
+    secrets:
+      - portainer_admin_password
+    networks:
+      - some_network
+
+volumes:
+  portainer-data:
+    driver: local
+
+networks:
+  some_network:
+    driver: bridge
+
+secrets:
+  portainer_admin_password:
+    file: /Users/admin/Desktop/CPaaS_API/Portainer/secrets/portainer-admin-password
+    # TODO bei AWS mit PWD verzeichnis aktuallisieren
+    #https://github.com/xcad2k/boilerplates/tree/main/docker-compose/portainer
