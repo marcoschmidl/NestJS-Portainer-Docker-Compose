@@ -2,21 +2,22 @@
   "name": "project",
   "version": "1.0.0",
   "scripts": {
-    "docker:build-all": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml build",
-    "docker:build-f-stage1": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml build frontend",
-    "docker:build-f-stage2": "docker-compose -f docker-compose.yml -f docker-compose.override.production.yml build frontend",
-    "docker:build-b-stage1": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml build backend",
-    "docker:build-b-stage2": "docker-compose -f docker-compose.yml -f docker-compose.override.production.yml build backend",
-    "docker:build-d": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml build mongo-express",
+    "docker:build-all": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml build",
+    "docker:build-b-stage1": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml build backend",
+    "docker:build-b-stage2": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml build backend",
+    "docker:build-d": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml build mongo-express",
     "docker:clean": "docker rmi $(docker images -q) &&  docker rm $(docker ps -a -q) && docker volume rm $(docker volume ls -q)",
     "docker:clean2": "docker compose down --rmi all -v",
     "docker:prune": "docker system prune -a",
-    "docker:logs": "docker-compose logs",
+    "docker:logs": "docker compose logs",
     "docker:sys-info": "docker system df -v ",
-    "docker:stage1": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml up",
-    "docker:stage2": "docker-compose -f docker-compose.yml -f docker-compose.override.production.yml up",
-    "docker:stage1-clean": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml up --build -V",
-    "docker:stage2-clean": "docker-compose -f docker-compose.yml -f docker-compose.override.production.yml up --build -V",
-    "start-ev": "docker-compose -f docker-compose.yml -f docker-compose.override.development.yml up frontend"
+    "docker:stage1": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml up",
+    "docker:stage2": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml up",
+    "docker:stage1-clean": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml up --build -V",
+    "docker:stage2-clean": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml up --build -V",
+    "start-ev": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml up frontend"
+  },
+  "dependencies": {
+    "@nestjs/cli": "^10.2.1"
   }
 }

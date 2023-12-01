@@ -16,19 +16,3 @@ services:
       interval: 500s
       timeout: 5s
       retries: 3
-
-  frontend:
-    build:
-      target: production
-    ports:
-      - ${FRONTEND_PORT_2}:${FRONTEND_PORT_2}
-    env_file:
-      - .env
-    environment:
-      PORT: ${FRONTEND_PORT_2}
-      SOCKET_URL: ${SOCKET_IO_CONFIG_2}
-    healthcheck:
-      test: curl --fail -s http://localhost:${FRONTEND_PORT_2}/ || exit 1
-      interval: 500s
-      timeout: 5s
-      retries: 3

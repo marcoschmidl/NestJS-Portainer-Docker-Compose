@@ -17,20 +17,3 @@ services:
       interval: 500s
       timeout: 5s
       retries: 3
-
-  frontend:
-    build:
-      target: development
-    command: npm run start
-    ports:
-      - ${FRONTEND_PORT_1}:${FRONTEND_PORT_1}
-    env_file:
-      - .env
-    environment:
-      PORT: ${FRONTEND_PORT_1}
-      SOCKET_URL: ${SOCKET_IO_CONFIG_1}
-    healthcheck:
-      test: curl --fail -s http://localhost:${FRONTEND_PORT_1}/ || exit 1
-      interval: 500s
-      timeout: 5s
-      retries: 3
