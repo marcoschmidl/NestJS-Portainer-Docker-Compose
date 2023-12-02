@@ -29,4 +29,7 @@ networks:
 
 secrets:
   portainer_admin_password:
-    file: /Users/admin/Desktop/CPaaS_API/Portainer/secrets/portainer-admin-password
+    file: ./secrets/portainer-admin-password.txt
+
+
+### Zertifikate erstellen
