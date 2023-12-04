@@ -1,3 +1,7 @@
 Notizen.md
-.idea
-OldDockerCompose
+/.idea
+.DS_Store
+.git
+.gitignore
+/OldDockerCompose
+package.txt
