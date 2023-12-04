@@ -1,0 +1,13 @@
+node_modules
+Dockerfile.backend
+Dockerfile.backend2
+docker-compose.basic.yml
+docker-compose.development.yml
+docker-compose.production.yml
+docker-compose.development2.yml
+README.md
+dist
+.git
+.env
+.env
+.gitignore

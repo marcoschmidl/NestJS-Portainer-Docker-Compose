@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile.backend2
+      context: . 
+    container_name: backend
+    volumes:
+      - ./backend:/workplace-backend/src/app
+      - /workplace-backend/src/app/node_modules/
+    restart: unless-stopped
+    links:
+      - mongo
+    networks:
+      - project_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 100M
+     
+networks:
+  project_network:
+    driver: bridge
+
+volumes:
+  mongodata:
+    driver: local
+
+#depends_on: mongo? geht das noch? 

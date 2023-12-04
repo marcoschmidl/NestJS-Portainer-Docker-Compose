@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  backend:
+    build:
+      target: install-dependencies
+    ports:
+      - "${BACKEND_PORT_1}:${BACKEND_PORT_1}"
+    env_file:
+        - .env
+    environment:
+        PORT: ${BACKEND_PORT_1}
+        DB_URL: ${DATABASE_URL}
+    command: npm run start:dev
+    healthcheck:
+      test: curl --fail -s http://localhost:${BACKEND_PORT_1}/backend/ || exit 1
+      interval: 500s
+      timeout: 5s
+      retries: 3
+
