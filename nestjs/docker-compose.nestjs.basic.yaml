@@ -5,23 +5,16 @@ services:
       dockerfile: Dockerfile
       context: . 
     volumes:
-      - ./nestjs-backend:/workplace-backend/src/app
+      - .:/workplace-backend/src/app
       - /workplace-backend/src/app/node_modules/
     restart: unless-stopped
     env_file:
       - .env
     environment:
       DB_URL: ${DATABASE_URL}
-   # links:
-    #  - mongo
     networks:
       - project_network
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 100M
-     
+
 networks:
   project_network:
     driver: bridge
