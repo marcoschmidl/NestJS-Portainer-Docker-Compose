@@ -1,0 +1,24 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "scripts": {
+    "docker:build-all": "docker compose -f ./nestjs/docker-compose.nestjs.basic.yaml -f ./nestjsdocker-compose.nestjs.development.yaml build",
+    "docker:build-dev": "docker compose -f ./nestjs/docker-compose.nestjs.basic.yaml -f ./nestjs/docker-compose.nestjs.development.yaml build",
+    "docker:build-prod": "docker compose -f ./nestjs/docker-compose.nestjs.basic.yaml -f ./nestjs/docker-compose.nestjs.production.yaml build",
+    "docker:build-debug": "docker compose -f ./nestjs/docker-compose.nestjs.basic.yaml -f ./nestjs/docker-compose.nestjs.development.debug.yaml build",
+    "docker:clean": "docker rmi $(docker images -q) &&  docker rm $(docker ps -a -q) && docker volume rm $(docker volume ls -q)",
+    "docker:clean2": "docker compose down --rmi all -v",
+    "docker:prune": "docker system prune -a",
+    "docker:logs": "docker compose logs",
+    "docker:sys-info": "docker system df -v ",
+    "docker:run-dev-env": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml up",
+    "docker:run-prod-env": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml up",
+    "docker:run-debug-env": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml up",
+    "docker:run-dev-env-clean": "docker compose -f docker-compose.yml -f docker-compose.override.development.yml up --build -V",
+    "docker:run-prod-env-clean": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml up --build -V",
+    "docker:run-debug-env-clean": "docker compose -f docker-compose.yml -f docker-compose.override.production.yml up --build -V"
+  },
+  "dependencies": {
+    "@nestjs/cli": "^10.2.1"
+  }
+}

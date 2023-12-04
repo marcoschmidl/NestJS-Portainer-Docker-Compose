@@ -1,16 +1,14 @@
 version: "3.7"
 services:
-  backend:
+  nestjs-backend:
+    container_name: nestjs-backend-prod
     build:
       target: production
     ports:
       - ${BACKEND_PORT_2}:${BACKEND_PORT_2}
-    env_file:
-      - .env
     environment:
       PORT: ${BACKEND_PORT_2}
-      DB_URL: ${DATABASE_URL}
-    command: npm run start:prod
+    #command: npm run start:prod oder CMD ["node", "dist/main"] -> könnte ich beides auslgagern in YAML
     healthcheck:
       test: curl --fail -s http://localhost:${BACKEND_PORT_2}/backend/ || exit 1
       interval: 500s

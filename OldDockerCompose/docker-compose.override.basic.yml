@@ -14,8 +14,8 @@ services:
     build:
       context: Nest
       dockerfile: Dockerfile.backend
-      args:
-        - NODE_ENV=development
+      #args:
+      #  - NODE_ENV=development
     depends_on:
       - mongo
     links:

@@ -1,15 +1,13 @@
 version: "3.7"
 services:
-  backend:
+  nestjs-backend:
+    container_name: nestjs-backend-dev
     build:
-      target: install-dependencies
+      target: development
     ports:
-      - "${BACKEND_PORT_1}:${BACKEND_PORT_1}"
-    env_file:
-        - .env
+      - "${BACKEND_PORT_1}:${BACKEND_PORT_1}" # sind die Anführungszeichen hier notwendig?
     environment:
-        PORT: ${BACKEND_PORT_1}
-        DB_URL: ${DATABASE_URL}
+      PORT: ${BACKEND_PORT_1}
     command: npm run start:dev
     healthcheck:
       test: curl --fail -s http://localhost:${BACKEND_PORT_1}/backend/ || exit 1

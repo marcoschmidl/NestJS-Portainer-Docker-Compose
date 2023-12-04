@@ -4,6 +4,7 @@
 
 FROM node:18-alpine AS development
  
+#ENV NODE_ENV=development
 WORKDIR /workplace-backend/src/app 
 COPY --chown=node:node package*.json ./
 RUN npm ci
@@ -20,7 +21,7 @@ FROM node:18-alpine AS build
 WORKDIR /workplace-backend/src/app
 
 COPY --chown=node:node package*.json ./
-#COPY --chown=node:node --from=development /workplace-backend/src/app/node_modules ./node_modules
+COPY --chown=node:node --from=development /workplace-backend/src/app/node_modules ./node_modules 
 COPY --chown=node:node . .
 
 RUN npm run build 

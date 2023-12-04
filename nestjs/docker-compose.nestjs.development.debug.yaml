@@ -1,16 +1,14 @@
 version: "3.7"
 services:
-  backend:
+  nestjs-backend:
+    container_name: nestjs-backend-debug
     build:
-      target: install-dependencies
+      target: development
     ports:
       - "${BACKEND_PORT_1}:${BACKEND_PORT_1}"
       - "9229:9229"
-    env_file:
-        - .env
     environment:
         PORT: ${BACKEND_PORT_1} # Das ist doch unnötig, oder?
-        DB_URL: ${DATABASE_URL}
     command: npm run start:inspect
     healthcheck:
       test: curl --fail -s http://localhost:${BACKEND_PORT_1}/backend/ || exit 1
